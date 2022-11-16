@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AddressBook } from 'src/app/model/address-book';
+import { AddressBookService } from 'src/app/service/address-book.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private service: AddressBookService) { }
+  public personModel: AddressBook= new AddressBook("","","","","","","","");
+
+  contactList: any;
 
   ngOnInit(): void {
+    this.service.getAllPerson().subscribe((data: any)=> {
+      console.log(data);
+      this.contactList= Object(data)["data"];
+    })
+  }
+
+  delete(id: Number) {
+    console.log(id);
+    this.service.deleteById(id).subscribe((data: any)=> {
+      console.log(data);
+      this.ngOnInit();
+    })
+  }
+
+  update(id: Number, person: AddressBook) {
+    console.log(id, person);
+    this.service.update(id, person);
+    this.router.navigate(['form']);
   }
 
 }

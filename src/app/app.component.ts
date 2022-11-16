@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AddressBook } from './model/address-book';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Address_Book_Frontend';
+  person= new AddressBook("","","","","","","","")
 }

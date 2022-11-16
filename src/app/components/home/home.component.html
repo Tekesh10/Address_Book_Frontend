@@ -14,19 +14,23 @@
             <th class="text-table text-zip">Zip Code</th>
             <th class="text-table text-phone">Phone Number</th>
         </tr>
-        <tr class="data-row">
-            <td class="text-data text-data-first">Aman</td>
-            <td class="text-data text-data-last">Jaiswal</td>
-            <td class="text-data text-data-address">Main Market road</td>
-            <td class="text-data text-data-city">Baloda Bazar</td>
-            <td class="text-data text-data-state">Chhattisgarh</td>
-            <td class="text-data text-data-zip">999999</td>
-            <td class="text-data text-data-phone">9999999999</td>
+        <tr class="data-row" *ngFor="let contact of contactList">
+            <td class="text-data text-data-first">{{contact.firstName}}</td>
+            <td class="text-data text-data-last">{{contact.lastName}}</td>
+            <td class="text-data text-data-address">{{contact.address}}</td>
+            <td class="text-data text-data-city">{{contact.city}}</td>
+            <td class="text-data text-data-state">{{contact.state}}</td>
+            <td class="text-data text-data-zip">{{contact.zipCode}}</td>
+            <td class="text-data text-data-phone">{{contact.phoneNumber}}</td>
             <td class="icons icon-delete">
-                <button mat-icon-button><img src="../../../assets/delete-black-18dp.svg" alt=""></button>
+                <button mat-icon-button>
+                    <img src="../../../assets/delete-black-18dp.svg" alt="" id={{contact.id}} (click)="delete(contact.id)">
+                </button>
             </td>
             <td class="icons icon-delete">
-                <button mat-icon-button><img src="../../../assets/create-black-18dp.svg" alt=""></button>
+                <button mat-icon-button>
+                    <img src="../../../assets/create-black-18dp.svg" alt="" id={{contact.id}} (click)="update(contact.id, contact)">
+                </button>
             </td>
         </tr>
     </table>
